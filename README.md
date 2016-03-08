@@ -16,5 +16,6 @@ bash /home/box/web/init.sh
 ### полезные ссылки
 - тестирование регулярных выражений https://regex101.com/#pcre
 - введение в git https://githowto.com/ru
+
 ### запуск на виртуалке
 для nginx нужно удалить **default_server** у всех, кроме вашего, чтобы запустилось

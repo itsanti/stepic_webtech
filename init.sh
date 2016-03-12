@@ -21,4 +21,4 @@ sudo mysql -uroot -e "create database ask"
 echo "ask database created"
 
 chmod u+x /home/box/web/ask/manage.py
-ask/manage.py syncdb --noinput
+sudo /home/box/web/ask/manage.py syncdb --noinput

@@ -1,4 +1,4 @@
-sudo service mysql start
+sudo /etc/init.d/mysql start
 
 if [ $? -ne 0 ]; then
   echo "mysql start failed"
@@ -20,4 +20,4 @@ sudo mysql -uroot -e "create database ask"
 sleep 3
 
 chmod u+x /home/box/web/ask/manage.py
-ask/manage.py syncdb --noinput
+sudo ask/manage.py syncdb --noinput

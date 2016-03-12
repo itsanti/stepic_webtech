@@ -17,7 +17,7 @@ sudo /etc/init.d/gunicorn restart
 
 sleep 5
 
-sudo mysql -uroot -e "create database ask"
+sudo mysql -uroot -e "create database ask" > /dev/null
 echo "ask database created"
 
 chmod u+x /home/box/web/ask/manage.py

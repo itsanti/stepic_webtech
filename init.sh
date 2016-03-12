@@ -5,7 +5,7 @@ if [ $? -ne 0 ]; then
   exit 1
 fi
 
-sleep 3
+sleep 5
 
 sudo ln -s /home/box/web/etc/nginx.conf /etc/nginx/sites-enabled/test.conf
 sudo rm /etc/nginx/sites-enabled/default
@@ -15,9 +15,10 @@ sudo ln -s /home/box/web/etc/hello.py /etc/gunicorn.d/hello.py
 sudo ln -s /home/box/web/etc/ask.py /etc/gunicorn.d/ask.py
 sudo /etc/init.d/gunicorn restart
 
-sudo mysql -uroot -e "create database ask"
+sleep 5
 
-sleep 3
+sudo mysql -uroot -e "create database ask"
+echo "ask database created"
 
 chmod u+x /home/box/web/ask/manage.py
-sudo ask/manage.py syncdb --noinput
+ask/manage.py syncdb --noinput

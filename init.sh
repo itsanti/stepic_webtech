@@ -1,3 +1,10 @@
+sudo service mysql restart
+
+if [ $? -ne 0 ]; then
+  echo "mysql restart failed"
+  exit 1
+fi
+
 sudo ln -s /home/box/web/etc/nginx.conf /etc/nginx/sites-enabled/test.conf
 sudo rm /etc/nginx/sites-enabled/default
 sudo /etc/init.d/nginx restart

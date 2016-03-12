@@ -1,7 +1,7 @@
-sudo service mysql restart
+sudo service mysql start
 
 if [ $? -ne 0 ]; then
-  echo "mysql restart failed"
+  echo "mysql start failed"
   exit 1
 fi
 

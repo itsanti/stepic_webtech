@@ -3,7 +3,8 @@ from django.conf.urls import patterns, include, url
 from django.contrib import admin
 admin.autodiscover()
 
-from qa.views import main_list, test, question_details, popular_list
+from qa.views import main_list, test, question_details, popular_list, \
+ask_form, post_answer
 
 urlpatterns = patterns('',
     # Examples:
@@ -13,8 +14,9 @@ urlpatterns = patterns('',
     url(r'^login/', test),
     url(r'^signup/', test),
     url(r'^question/(\d+)/', question_details, name='question-details'),
-    url(r'^ask/', test),
+    url(r'^ask/', ask_form),
     url(r'^popular/', popular_list),
     url(r'^new/', test),
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^answer/', post_answer),
 )

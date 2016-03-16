@@ -15,6 +15,7 @@
     </div>
     <ul class="nav navbar-nav">
       <li {% if path == '/popular/' %} class="active"{% endif %}><a href="/popular/">Popular</a></li>
+      <li {% if path == '/ask/' %} class="active"{% endif %}><a href="/ask/">Ask Question</a></li>
     </ul>
     <p class="navbar-text navbar-right">
       <a href="#" class="navbar-link">log in</a> | 
@@ -25,7 +26,8 @@
 <div class="container">
 {% block main_list %}{% endblock %} 
 {% block question %}{% endblock %} 
-{% block pagination %}{% endblock %} 
+{% block pagination %}{% endblock %}
+{% block askform %}{% endblock %}  
 </div>
 </body>
 </html>

@@ -2,7 +2,11 @@
 {% block title %}
   {{ question }}
 {% endblock %}
+
 {% block question %}
+{% for e in form.non_field_errors %}
+<div class="alert alert-danger">{{ e }}</div>
+{% endfor %}
 <div class="panel panel-primary">
   <div class="panel-heading">{{ question }}</div>
   <div class="panel-body">
@@ -21,4 +25,5 @@
   </div>
   {% endfor %}
 </div>
+{% include "answerform.html" %}
 {% endblock %} 

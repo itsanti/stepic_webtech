@@ -1,0 +1,24 @@
+{% extends "main.html" %} 
+{% block title %}
+  {{ question }}
+{% endblock %}
+{% block question %}
+<div class="panel panel-primary">
+  <div class="panel-heading">{{ question }}</div>
+  <div class="panel-body">
+    <p>{{ question.text }}</p>
+  </div>
+</div>
+<div class="panel panel-info">
+  <div class="panel-heading">ответы</div>
+  {% for answer in question.answer_set.all %}
+  <ul class="list-group">
+    <li class="list-group-item">{{ answer.text }}</li>
+  </ul>
+  {% empty %}
+  <div class="panel-body">
+    <p>ответов нет</p>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %} 

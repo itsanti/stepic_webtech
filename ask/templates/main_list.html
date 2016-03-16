@@ -1,0 +1,18 @@
+{% extends "main.html" %}
+ 
+{% block main_list %}
+  {% for q in questions %}
+  <div class="panel panel-primary">
+    <div class="panel-body">
+      <strong>{{ q }}</strong><a href="{{ q.get_url }}" class="pull-right">на страницу вопроса</a>
+    </div>
+  </div>
+  {% empty %}
+      <p>вопросов нет</p>
+  {% endfor %}
+{% endblock %}
+
+{% block pagination %}
+  {% include 'pagination.html' %} 
+{% endblock %}
+

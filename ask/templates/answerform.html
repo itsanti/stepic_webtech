@@ -1,14 +1,10 @@
 <form class="form-horizontal" method="post" action="/answer/">
 {% csrf_token %}
 {% for field in form %}
-{% if field.name != "question" %}
 <div class="form-group {% if field.errors %}has-error{% endif %}">
   <label class="col-sm-2 control-label">{{ field.label }}</label>
   <div class="col-sm-10">{{ field }}</div>
 </div>
-{% else %}
-<input id="id_question" name="question" type="hidden" value="{{question.id}}">
-{% endif %}
 {% endfor %}
 <div class="form-group">
   <div class="col-sm-offset-6 col-sm-6">

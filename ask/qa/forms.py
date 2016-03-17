@@ -41,7 +41,7 @@ class AskForm(forms.Form):
 class AnswerForm(forms.Form):
   ''' add answer '''
   text = forms.CharField(label='New answer', widget=forms.Textarea(attrs={'class':'form-control'}))
-  question = forms.CharField(widget=forms.HiddenInput)
+  question = forms.IntegerField()
 
   def clean_text(self):
     text = self.cleaned_data['text']

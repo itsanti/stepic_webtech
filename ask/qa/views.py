@@ -50,8 +50,9 @@ def popular_list(request, *args, **kwargs):
     'path': request.path,
   }) 
  
-@require_GET
 def question_details(request, id):
+  if request.method == "POST":
+    return render('OK')
   try:
     # question = get_object_or_404(Question, id=id)
     question = Question.objects.get(id=id)

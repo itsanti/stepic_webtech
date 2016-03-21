@@ -4,6 +4,7 @@ from qa.models import Question
 from django.views.decorators.http import require_GET, require_POST
 from django.core.paginator import Paginator, EmptyPage
 from qa.forms import AskForm, AnswerForm
+from django.contrib.auth import authenticate, login
 
 # Create your views here.
 def test(request, *args, **kwargs):
@@ -66,6 +67,7 @@ def question_details(request, id):
 def ask_form(request):
   if request.method == "POST":
     form = AskForm(request.POST)
+    form._user = request.user
     if form.is_valid():
       question = form.save()
       return HttpResponseRedirect(question.get_url())
@@ -79,6 +81,40 @@ def ask_form(request):
 @require_POST
 def post_answer(request):
   form = AnswerForm(request.POST)
+  form._user = request.user
   if form.is_valid():
     answer = form.save()
     return HttpResponseRedirect(answer.question.get_url())
+
+def signup_form(request):
+  if request.method == "POST":
+    form = SignupForm(request.POST)
+    if form.is_valid():
+      user = form.save()
+      user = authenticate(username=user.username, password=user.password)
+      if user is not None:
+        if user.is_active:
+          login(request, user)
+      return HttpResponseRedirect('/')
+  else:
+    form = SignupForm()
+  return render(request, 'signupform.html', {
+    'form': form,
+    'path': request.path,
+  })
+  
+def login_form(request):
+  if request.method == "POST":
+    form = LoginForm(request.POST)
+    if form.is_valid():
+      user = form.save()
+      if user is not None:
+        if user.is_active:
+          login(request, user)
+      return HttpResponseRedirect('/')
+  else:
+    form = LoginForm()
+  return render(request, 'signupform.html', {
+    'form': form,
+    'path': request.path,
+  })

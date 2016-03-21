@@ -1,6 +1,7 @@
 from django import forms
 from qa.models import Question, Answer
 from datetime import datetime
+from django.contrib.auth.models import User
 
 class AskForm(forms.Form):
   ''' add question '''
@@ -31,7 +32,7 @@ class AskForm(forms.Form):
       'text': self.cleaned_data['text'],
       'added_at': datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
       'rating': 0,
-      'author_id': 1,
+      'author_id': self._user.id,
     }
     question = Question(**data)
     question.save()
@@ -56,8 +57,30 @@ class AnswerForm(forms.Form):
       'text': self.cleaned_data['text'],
       'added_at': datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
       'question_id': int(self.cleaned_data['question']),
-      'author_id': 1,
+      'author_id': self._user.id,
     }
     answer = Answer(**data)
     answer.save()
-    return answer  
+    return answer 
+
+class SignupForm(forms.Form):
+  username = forms.CharField(label='Login', widget=forms.Textarea(attrs={'class':'form-control'}))
+  email = forms.CharField(label='Email', widget=forms.Textarea(attrs={'class':'form-control'}))
+  password = forms.CharField(label='Password', widget=forms.Textarea(attrs={'class':'form-control'}))
+  
+  def save(self):
+    username = self.cleaned_data['username']
+    email = self.cleaned_data['email']
+    password = self.cleaned_data['password']
+    user = User.objects.create_user(username, email, password)
+    return user 
+    
+class LoginForm(forms.Form):
+  username = forms.CharField(label='Login', widget=forms.Textarea(attrs={'class':'form-control'}))
+  password = forms.CharField(label='Password', widget=forms.Textarea(attrs={'class':'form-control'}))
+  
+  def save(self):
+    username = self.cleaned_data['username']
+    password = self.cleaned_data['password']
+    user = authenticate(username=username, password=password)
+    return user 

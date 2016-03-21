@@ -18,8 +18,8 @@
       <li {% if path == '/ask/' %} class="active"{% endif %}><a href="/ask/">Ask Question</a></li>
     </ul>
     <p class="navbar-text navbar-right">
-      <a href="#" class="navbar-link">log in</a> | 
-      <a href="#" class="navbar-link">register</a>
+      <a href="/login/" class="navbar-link">log in</a> | 
+      <a href="/signup/" class="navbar-link">register</a>
     </p>
   </div>
 </nav>
@@ -27,7 +27,9 @@
 {% block main_list %}{% endblock %} 
 {% block question %}{% endblock %} 
 {% block pagination %}{% endblock %}
-{% block askform %}{% endblock %}  
+{% block askform %}{% endblock %} 
+{% block register %}{% endblock %}
+{% block login %}{% endblock %}   
 </div>
 </body>
 </html>

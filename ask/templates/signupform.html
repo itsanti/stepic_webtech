@@ -1,0 +1,25 @@
+{% extends "main.html" %} 
+
+{% block title %}
+  страница регистрации
+{% endblock %}
+
+{% block register %}
+  {% for e in form.non_field_errors %}
+  <div class="alert alert-danger">{{ e }}</div>
+  {% endfor %}
+  <form class="form-horizontal" method="post" action="/ask/">
+  {% csrf_token %}
+  {% for field in form %}
+  <div class="form-group {% if field.errors %}has-error{% endif %}">
+    <label class="col-sm-2 control-label">{{ field.label }}</label>
+    <div class="col-sm-10">{{ field }}</div>
+  </div>
+  {% endfor %}
+  <div class="form-group">
+    <div class="col-sm-offset-6 col-sm-6">
+      <button type="submit" class="btn btn-success">sign up</button>
+    </div>
+  </div>
+  </form>
+{% endblock %} 

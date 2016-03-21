@@ -87,11 +87,13 @@ def post_answer(request):
     return HttpResponseRedirect(answer.question.get_url())
 
 def signup_form(request):
+  #if request.user.is_authenticated():
+	#	return HttpResponseRedirect('/'); 
   if request.method == "POST":
     form = SignupForm(request.POST)
     if form.is_valid():
       user = form.save()
-      user = authenticate(username=user.username, password=user.password)
+      user = authenticate(username=user.username, password=form.cleaned_data['password'])
       if user is not None:
         if user.is_active:
           login(request, user)

@@ -3,7 +3,7 @@ from django.http import HttpResponse, Http404, HttpResponseRedirect
 from qa.models import Question
 from django.views.decorators.http import require_GET, require_POST
 from django.core.paginator import Paginator, EmptyPage
-from qa.forms import AskForm, AnswerForm
+from qa.forms import AskForm, AnswerForm, SignupForm, LoginForm
 from django.contrib.auth import authenticate, login
 
 # Create your views here.
@@ -114,7 +114,7 @@ def login_form(request):
       return HttpResponseRedirect('/')
   else:
     form = LoginForm()
-  return render(request, 'signupform.html', {
+  return render(request, 'loginform.html', {
     'form': form,
     'path': request.path,
   })

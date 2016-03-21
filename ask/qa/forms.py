@@ -69,6 +69,10 @@ class SignupForm(forms.Form):
   email = forms.CharField(label='Email', widget=forms.Textarea(attrs={'class':'form-control'}))
   password = forms.CharField(label='Password', widget=forms.Textarea(attrs={'class':'form-control'}))
   
+  def clean_password(self):
+    password = self.cleaned_data['password']
+    return password  
+  
   def save(self):
     username = self.cleaned_data['username']
     email = self.cleaned_data['email']

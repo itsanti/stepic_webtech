@@ -95,7 +95,7 @@ def signup_form(request):
       if user is not None:
         if user.is_active:
           login(request, user)
-      return HttpResponseRedirect('/')
+          return HttpResponseRedirect('/')
   else:
     form = SignupForm()
   return render(request, 'signupform.html', {
@@ -111,7 +111,7 @@ def login_form(request):
       if user is not None:
         if user.is_active:
           login(request, user)
-      return HttpResponseRedirect('/')
+          return HttpResponseRedirect('/')
   else:
     form = LoginForm()
   return render(request, 'loginform.html', {

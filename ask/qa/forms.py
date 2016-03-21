@@ -65,9 +65,9 @@ class AnswerForm(forms.Form):
     return answer 
 
 class SignupForm(forms.Form):
-  username = forms.CharField(label='Login', widget=forms.Textarea(attrs={'class':'form-control'}))
-  email = forms.CharField(label='Email', widget=forms.Textarea(attrs={'class':'form-control'}))
-  password = forms.CharField(label='Password', widget=forms.Textarea(attrs={'class':'form-control'}))
+  username = forms.CharField(label='Login', widget=forms.TextInput(attrs={'class':'form-control'}))
+  email = forms.CharField(label='Email', widget=forms.EmailInput(attrs={'class':'form-control'}))
+  password = forms.CharField(label='Password', widget=forms.PasswordInput(attrs={'class':'form-control'}))
   
   def clean_password(self):
     password = self.cleaned_data['password']
@@ -81,8 +81,8 @@ class SignupForm(forms.Form):
     return user 
     
 class LoginForm(forms.Form):
-  username = forms.CharField(label='Login', widget=forms.Textarea(attrs={'class':'form-control'}))
-  password = forms.CharField(label='Password', widget=forms.Textarea(attrs={'class':'form-control'}))
+  username = forms.CharField(label='Login', widget=forms.TextInput(attrs={'class':'form-control'}))
+  password = forms.CharField(label='Password', widget=forms.PasswordInput(attrs={'class':'form-control'}))
   
   def save(self):
     username = self.cleaned_data['username']
